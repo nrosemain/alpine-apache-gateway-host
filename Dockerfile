@@ -9,6 +9,7 @@ RUN apk update && apk upgrade
 RUN apk add \
     apache2 \
     apache2-utils \
+    apache2-proxy \
     php5-apache2
 
 #creer document
@@ -23,6 +24,7 @@ COPY file/index.php \
      /var/www/localhost/htdocs/
 COPY file/start.sh /run/script/
 COPY file/httpd.conf /etc/apache2/
+COPY file/proxy.conf /etc/apache2/conf.d/proxy.conf
 
 #permission
 RUN chgrp -R www-data /work  && \
