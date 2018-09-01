@@ -22,13 +22,16 @@ RUN mkdir -p /run/apache2 && \
 COPY file/index.php \
      file/style.css \
      /var/www/localhost/htdocs/
-COPY file/start.sh /run/script/
+COPY file/start.sh \
+     file/command_php.sh \
+     file/command_php.txt \
+     /run/script/
 COPY file/httpd.conf /etc/apache2/
 COPY file/proxy.conf /etc/apache2/conf.d/proxy.conf
 
 #permission
-RUN chgrp -R www-data /work  && \
-    chmod -R 2775 /work
+RUN chgrp -R www-data /work /run/script && \
+    chmod -R 2775 /work /run/script
 
 #finalisation
 RUN rm -rf /var/cache/apk/*
