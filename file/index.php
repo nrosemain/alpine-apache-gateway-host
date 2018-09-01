@@ -29,9 +29,9 @@ if($_POST['create']){
         }elseif ($location === "distant"){
             $res .= "<VirtualHost *:80>\n";
             $res .= "    ServerName $servername\n";
-            $res .= "    ProxyPass http://$linfo/\n";
-            $res .= "    ProxyPassReverse http://$linfo/\n";
-            $res .= "    ProxyPreserveHost Off\n";
+            $res .= "    ProxyPass / http://$linfo/\n";
+            $res .= "    ProxyPassReverse / http://$linfo/\n";
+            $res .= "    ProxyPreserveHost On\n";
             $res .= "    ServerSignature Off\n";
             $res .= "</VirtualHost>\n";
 
