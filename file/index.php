@@ -62,7 +62,7 @@ foreach($a_conf_files as $conf_file){
             $line = trim($line);
 
             // CHECK IF STRING BEGINS WITH ServerAlias
-            $tokens = explode(' ',$line);
+            $tokens = explode(' ',$line, 2);
 
             if(!empty($tokens)){
                 if($tokens[0] == "ServerName" ||
