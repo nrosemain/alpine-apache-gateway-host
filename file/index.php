@@ -110,7 +110,7 @@ foreach($a_conf_files as $conf_file){
             <?php if(!empty($d['DocumentRoot'])): ?>
                 Directory : <?php echo $d['DocumentRoot']; ?>
             <?php else: ?>
-                IP : <a href="<?php echo $d['ProxyPass']; ?>"><?php echo $d['ProxyPass']; ?></a>
+                IP : <a href="<?php echo explode(' ',$d['ProxyPass'])[1]; ?>"><?php echo explode(' ',$d['ProxyPass'])[1]; ?></a>
             <?php endif; ?>
         </div><!--
      --><div class="size-1" style="text-align:center"><input type="checkbox" name="select[]" value="<?php echo $d['ServerName']; ?>" class="material-checkbox"/></div>
