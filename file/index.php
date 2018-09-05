@@ -24,7 +24,7 @@ if($_POST['create']){
             $res .= "</VirtualHost>\n";
             echo "lol";
 
-            if(file_put_contents($path.'/'.$servername.'.conf', $res) == false)
+            if(file_put_contents($path.'/'.$servername.'_'.$port.'.conf', $res) == false)
                 echo "error";
 
         }elseif ($location === "distant"){
@@ -36,7 +36,7 @@ if($_POST['create']){
             $res .= "    ServerSignature Off\n";
             $res .= "</VirtualHost>\n";
 
-            if(file_put_contents($path.'/'.$servername.'.conf', $res) == false)
+            if(file_put_contents($path.'/'.$servername.'_'.$port.'.conf', $res) == false)
                 echo "error";
         }
     }
