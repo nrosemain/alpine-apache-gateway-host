@@ -6,13 +6,14 @@ if($_POST['create']){
     $servername = $_POST['servername'];
     $location = $_POST['location'];
     $linfo = $_POST['linfo'];
+    $port = (!empty($_POST['port'])) ? $_POST['port'] : '80';
 
     $res = file_get_contents($path) . "\n\n";
 
     if(!empty($servername) && !empty($location) && !empty($linfo)){
 
         if($location === "localhost"){
-            $res .= "<VirtualHost *:80>\n";
+            $res .= "<VirtualHost *:$port>\n";
             $res .= "    ServerName $servername\n";
             $res .= "    DocumentRoot \"$linfo\"\n";
             $res .= "    <Directory \"$linfo\">\n";
@@ -27,7 +28,7 @@ if($_POST['create']){
                 echo "error";
 
         }elseif ($location === "distant"){
-            $res .= "<VirtualHost *:80>\n";
+            $res .= "<VirtualHost *:$port>\n";
             $res .= "    ServerName $servername\n";
             $res .= "    ProxyPass / http://$linfo/\n";
             $res .= "    ProxyPassReverse / http://$linfo/\n";
@@ -125,13 +126,15 @@ foreach($a_conf_files as $conf_file){
 <div class="container shadow bg-white">
     <form method="post">
         <div class="size-5"> Name of the Virtual Host <br/> No Diacritical characters (éçën) - No Space - No underscore</div><!--
-     --><div class="size-5"><input type="text" name="servername"></div><!--
+     --><div class="size-5"><input type="text" name="servername" required></div><!--
+     --><div class="size-5"> Port of the Virtual Host</div><!--
+     --><div class="size-5"><input type="number" name="port"></div><!--
      --><div class="size-5">Location</div><!--
      --><div class="size-5"><label for="rlocalhost">Local</label> <input id="rlocalhost" style="width: 10px" type="radio" value="localhost" name="location" checked> <label for="rdistant">Distant</label>
             <input id="rdistant" style="width: 10px" type="radio" value="distant" name="location">
         </div><!--
      --><div id="linfo" class="size-5"> Absolute path of the Virtual Host folder</div><!--
-     --><div class="size-5"><input type="text" name="linfo"></div><!--
+     --><div class="size-5"><input type="text" name="linfo" required></div><!--
      --><div class="size-10" style="text-align:center;"><input type="submit" name="create" value="create new virtual host"></div>
     </form>
 </div>
