@@ -2,7 +2,7 @@
 $path       = '/work/vhost'; # change to suit your needs
 $info = array(); $x=0;
 
-if($_POST['create']){
+if(isset($_POST['create'])){
     $servername = $_POST['servername'];
     $location = $_POST['location'];
     $linfo = $_POST['linfo'];
@@ -42,13 +42,13 @@ if($_POST['create']){
     }
 }
 
-if($_POST['delete']){
+if(isset($_POST['delete'])){
     foreach ($_POST['select'] as $v){
         unlink($path.'/'.$v.'.conf');
     }
 }
 
-if($_POST['reboot']){
+if(isset($_POST['reboot'])){
     shell_exec("echo 'reboot apache' > /run/script/command_php.txt");
 }
 
